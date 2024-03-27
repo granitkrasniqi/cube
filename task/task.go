@@ -112,3 +112,7 @@ func (d *Docker) Stop(id string) DockerResult {
 
 	return DockerResult{Action: "stop", Result: "success", Error: nil}
 }
+
+func (d *Docker) Run() DockerResult {
+	return DockerResult{}
+}
