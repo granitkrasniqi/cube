@@ -7,6 +7,8 @@ import (
 	"github.com/google/uuid"
 )
 
+// TODO: Implement API for the Manager
+
 type Manager struct {
 	Pending       queue.Queue
 	TaskDb        map[string][]*task.Task
