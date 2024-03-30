@@ -90,3 +90,7 @@ func (w *Worker) StopTask(t task.Task) task.DockerResult {
 
 	return result
 }
+
+func (w *Worker) GetTasks() any {
+	return nil
+}
