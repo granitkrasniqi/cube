@@ -29,3 +29,15 @@ func (s *Stats) MemUsedKb() uint64 {
 func (s *Stats) MemUsedPercent() uint64 {
 	return uint64(s.MemStats.UsedPercent)
 }
+
+func (s *Stats) DiskTotal() uint64 {
+	return s.DiskStats.Total
+}
+
+func (s *Stats) DiskFree() uint64 {
+	return s.DiskStats.Free
+}
+
+func (s *Stats) DiskUsed() uint64 {
+	return s.DiskStats.Used
+}
