@@ -35,7 +35,19 @@ func (m *Manager) SelectWorker() string {
 }
 
 func (m *Manager) UpdateTasks() {
-	fmt.Println("I will update tasks")
+	for _, worker := range m.Workers {
+		log.Printf("Checking worker %v for task updates", worker)
+		url := fmt.Sprintf("http://%s/tasks", worker)
+		resp, err := http.Get(url)
+		if err != nil {
+			log.Printf("Error connecting to %v: %v\n", worker, err)
+		}
+
+		if resp.StatusCode != http.StatusOK {
+			log.Printf("Error connecting to %v: %v\n", worker, resp.Status)
+		}
+		// TODO: continue
+	}
 }
 
 func (m *Manager) SendWork() {
