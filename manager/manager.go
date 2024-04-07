@@ -46,7 +46,31 @@ func (m *Manager) UpdateTasks() {
 		if resp.StatusCode != http.StatusOK {
 			log.Printf("Error connecting to %v: %v\n", worker, resp.Status)
 		}
-		// TODO: continue
+
+		d := json.NewDecoder(resp.Body)
+		var tasks []task.Task
+		err = d.Decode(&tasks)
+		if err != nil {
+			log.Printf("Error decoding response: %s\n", err.Error())
+		}
+
+		for _, t := range tasks {
+			log.Printf("Attempting to update task %v\n", t.ID)
+			_, ok := m.TaskDb[t.ID]
+			if !ok {
+				log.Printf("Task %s not found in database\n", t.ID)
+				return
+			}
+
+			if m.TaskDb[t.ID].State != t.State {
+				log.Printf("Updating task %v\n", t.ID)
+				m.TaskDb[t.ID].State = t.State
+			}
+
+			m.TaskDb[t.ID].StartTime = t.StartTime
+			m.TaskDb[t.ID].FinishTime = t.FinishTime
+			m.TaskDb[t.ID].ContainerID = t.ContainerID
+		}
 	}
 }
 
