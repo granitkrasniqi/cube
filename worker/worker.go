@@ -155,3 +155,9 @@ func (w *Worker) RunTasks() {
 	}
 
 }
+
+func (w *Worker) InspectTask(t task.Task) task.DockerInspectResponse {
+	config := task.NewConfig(&t)
+	d := task.NewDocker(config)
+	return d.Inspect(t.ContainerID)
+}
