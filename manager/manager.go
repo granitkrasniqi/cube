@@ -2,6 +2,8 @@ package manager
 
 import (
 	"bytes"
+	"cube/node"
+	"cube/scheduler"
 	"cube/task"
 	"cube/worker"
 	"encoding/json"
@@ -24,6 +26,8 @@ type Manager struct {
 	WorkerTaskMap map[string][]uuid.UUID
 	TaskWorkerMap map[uuid.UUID]string
 	LastWorker    int
+	WorkerNodes   []*node.Node
+	Scheduler     scheduler.Scheduler
 }
 
 func New(workers []string) *Manager {
