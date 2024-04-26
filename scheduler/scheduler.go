@@ -61,3 +61,24 @@ func (r *RoundRobin) Pick(scores map[string]float64, candidates []*node.Node) *n
 
 	return bestNode
 }
+
+type Epvm struct {
+	Name string
+}
+
+// TODO: implement Epvm
+
+//func (e *Epvm) SelectCandidateNodes(t task.Task, nodes []*node.Node) []*node.Node {
+//	var candidates []*node.Node
+//	for node := range nodes {
+//		if checkDisk(t, nodes[node].DiskAllocated) {
+//			candidates = append(candidates, nodes[node])
+//		}
+//	}
+//
+//	return candidates
+//}
+//
+//func checkDisk(t task.Task, diskAvailable int64) bool {
+//	return t.DiskRequired <= diskAvailable
+//}
